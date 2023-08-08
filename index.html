@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edsa Busway and MRT-3 Transit Map with Travel Times</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header, footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        #imageContainer {
+            background-image: url(images/edsa2lines.png);
+            width: 800px;
+            height: 800px;
+            border: 1px solid #dee2e6;
+            margin-bottom: 20px;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header class="container-fluid">
+        <h1>Edsa Busway and MRT-3 Transit Map with Travel Times</h1>
+        <p>Compare travel times between stations of Edsa Busway and MRT-3 lines. The travel times layer are updated using data from the public transport crowdsouring mobile app SafeTravelPH. The data here are based on daily averages for the month of July 2023.</p>
+    </header>
+    <main class="container">
+        <div class="row mb-3">
+            <div class="col-sm-4"><input type="checkbox" id="busway" name="busway"> <label for="busway">Busway</label></div>
+            <div class="col-sm-4"><input type="checkbox" id="mrt" name="mrt"> <label for="mrt">MRT</label></div>
+            <div class="col-sm-4"><input type="checkbox" id="both" name="both" checked> <label for="both">Both lines</label></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 d-flex justify-content-center">
+                <div id="imageContainer"></div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Get involved! Learn more at <a href="https://safetravelph.org" target="_blank" rel="noopener noreferrer">SafeTravelPH.org</a> or go to the MetroMapMaker.com link on stamped on the image to edit the map, or visit the<a href="https://https://github.com/orgs/safetravelphmobilityinnovations/edsa-transit-maps" target="_blank" rel="noopener noreferrer"> Github repository</a> to contribute and improve this whole site.</p>
+        <p>(c) 2023 SafeTravelPH Mobility Innovations Organization | UP Edsa Bus Efficiency Analysis and Monitoring (BEAMS) Project</p>
+    </footer>
+    <script>
+        function uncheckOthers(current) {
+            const checkboxes = ['busway', 'mrt', 'both'];
+            checkboxes.forEach(function(id) {
+                if (id !== current) {
+                    document.getElementById(id).checked = false;
+                }
+            });
+        }
+
+        document.getElementById('busway').addEventListener('change', function() {
+            if (this.checked) {
+                uncheckOthers('busway');
+                document.getElementById('imageContainer').style.backgroundImage = 'url(edsabusway.png)';
+                document.getElementById('imageContainer').style.display = 'block';
+            } else {
+                document.getElementById('imageContainer').style.display = 'none';
+            }
+        });
+
+        document.getElementById('mrt').addEventListener('change', function() {
+            if (this.checked) {
+                uncheckOthers('mrt');
+                document.getElementById('imageContainer').style.backgroundImage = 'url(edsamrt.png)';
+                document.getElementById('imageContainer').style.display = 'block';
+            } else {
+                document.getElementById('imageContainer').style.display = 'none';
+            }
+        });
+
+        document.getElementById('both').addEventListener('change', function() {
+            if (this.checked) {
+                uncheckOthers('both');
+                document.getElementById('imageContainer').style.backgroundImage = 'url(edsa2lines.png)';
+                document.getElementById('imageContainer').style.display = 'block';
+            } else {
+                document.getElementById('imageContainer').style.display = 'none';
+            }
+        });
+    </script>
+
+<script src="https://static.app/js/static.js" type="text/javascript"></script>
+</body>
+</html>
